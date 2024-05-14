@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { connect } from 'react-redux';
+
 import UserList from "./components/UserList"; // Assuming UserList is your user list component
 import {addUser} from "./services/userServices"
 import Modal from "../src/components/Modal";
+import {addUserAction} from "../src/actions/userActions"
 
 export default function Root(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,7 +14,7 @@ export default function Root(props) {
     name: "",
     contact: "",
     address: "",
-    devices: [],
+    // devices: [],
   });
 
   const handleLogout = () => {
@@ -37,35 +40,35 @@ export default function Root(props) {
     }));
   };
 
-  const handleAddDevice = () => {
-    setFormData((prevData) => ({
-      ...prevData,
-      devices: [...prevData.devices, ""],
-    }));
-  };
+  // const handleAddDevice = () => {
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     devices: [...prevData.devices, ""],
+  //   }));
+  // };
 
-  const handleDeviceChange = (e, index) => {
-    const { value } = e.target;
-    setFormData((prevData) => {
-      const updatedDevices = [...prevData.devices];
-      updatedDevices[index] = value;
-      return {
-        ...prevData,
-        devices: updatedDevices,
-      };
-    });
-  };
+  // const handleDeviceChange = (e, index) => {
+  //   const { value } = e.target;
+  //   setFormData((prevData) => {
+  //     const updatedDevices = [...prevData.devices];
+  //     updatedDevices[index] = value;
+  //     return {
+  //       ...prevData,
+  //       devices: updatedDevices,
+  //     };
+  //   });
+  // };
 
-  const handleRemoveDevice = (index) => {
-    setFormData((prevData) => {
-      const updatedDevices = [...prevData.devices];
-      updatedDevices.splice(index, 1);
-      return {
-        ...prevData,
-        devices: updatedDevices,
-      };
-    });
-  };
+  // const handleRemoveDevice = (index) => {
+  //   setFormData((prevData) => {
+  //     const updatedDevices = [...prevData.devices];
+  //     updatedDevices.splice(index, 1);
+  //     return {
+  //       ...prevData,
+  //       devices: updatedDevices,
+  //     };
+  //   });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +80,7 @@ export default function Root(props) {
         name: "",
         contact: "",
         address: "",
-        devices: [],
+        // devices: [],
       });
       
       // Optionally, you can fetch the updated user list after adding a user
@@ -125,7 +128,7 @@ export default function Root(props) {
               onChange={handleInputChange}
             />
           </label>
-          <label>
+          {/* <label>
             Devices:
             {formData.devices.map((device, index) => (
               <div key={index}>
@@ -145,7 +148,7 @@ export default function Root(props) {
             <button type="button" onClick={handleAddDevice}>
               Add Device
             </button>
-          </label>
+          </label> */}
           <button type="submit">Submit</button>
         </form>
       </Modal>

@@ -9,6 +9,7 @@ app.use(express.json());
 const {connectToMongoDB} = require('./src/utils/db');
 const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/authRoutes');
+const deviceRoutes = require('./src/routes/deviceRoutes')
 
 async function main() {
   await connectToMongoDB();
@@ -16,7 +17,7 @@ async function main() {
 
 main().catch(console.error);
 
-
+app.use('/api', deviceRoutes);
 app.use('/api', userRoutes);
 app.use('/api/auth', authRoutes);
 

@@ -12,5 +12,6 @@ const lifecycles = singleSpaReact({
     return null;
   },
 });
+console.log('Bootstraping ReactOrgDevices-ReactProjectDevices');
 
 export const { bootstrap, mount, unmount } = lifecycles;

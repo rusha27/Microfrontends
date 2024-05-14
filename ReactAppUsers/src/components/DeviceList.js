@@ -1,26 +1,36 @@
-import React from 'react';
+// import React, { useState, useEffect } from 'react';
+// import { getDevicesName } from '../services/deviceServices';
 
-const deviceList = [
-  { id: 1, name: 'Device 1' },
-  { id: 2, name: 'Device 2' },
-  { id: 3, name: 'Device 3' }
-];
+// const DeviceList = ({ deviceId }) => {
+//   console.log("devices",deviceId);
+//   console.log("devices",typeof(deviceId) );
 
-const DeviceList = ({ userId }) => {
-  const handleClick = () => {
-    // Navigate to the /devices route
-    window.location.href = '/devices'; // Replace with your actual route
-  };
+//   const [deviceList, setDeviceList] = useState([]);
 
-  return (
-    <div className="device-list">
-      {deviceList.map(device => (
-        <div key={device.id} className="device" onClick={handleClick}>
-          {device.name}
-        </div>
-      ))}
-    </div>
-  );
-};
+//   useEffect(() => {
+//     const fetchDevices = async () => {
+//       try {
+//         const devices = await getDevicesName(deviceId);
+//         setDeviceList(devices);
+//       } catch (error) {
+//         console.error('Error fetching devices:', error);
+//       }
+//     };
 
-export default DeviceList;
+//     fetchDevices();
+//   }, []);
+
+  
+
+//   return (
+//     <div className="device-list">
+//       {deviceList.map(device => (
+//         <div key={device.id} className="device" onClick={handleClick}>
+//           {device.name}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default DeviceList;

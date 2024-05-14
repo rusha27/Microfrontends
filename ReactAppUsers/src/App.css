@@ -5,8 +5,8 @@
   .user-info {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
+    align-items: stretch;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     flex-direction: column;

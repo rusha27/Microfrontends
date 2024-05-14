@@ -2,12 +2,29 @@
 const { connectToMongoDB } = require("../utils/db")
 const { ObjectId } = require('mongodb'); // Import ObjectId from mongodb
 
-
 async function getAllUsers() {
     const db = await connectToMongoDB();
-    const collection = db.collection('User_details');
-    return collection.find({}).toArray();
+    const userCollection = db.collection('User_details');
+    const deviceCollection = db.collection('Device_details');
+
+    const users = await userCollection.find({}).toArray();
+
+    const usersWithDeviceNames = await Promise.all(users.map(async user => {
+        if (user.devices) {
+            const devicesWithNames = await Promise.all(user.devices.map(async deviceId => {
+                const device = await deviceCollection.findOne({ _id: new ObjectId(deviceId) });
+                return { [deviceId]: device ? device.name || 'Device name not found' : 'Device not found' };
+            }));
+            const devicesObject = Object.assign({}, ...devicesWithNames);
+            return { ...user, devices: devicesObject };
+        } else {
+            return { ...user, devices: {} }; // Or handle it as you see fit
+        }
+    }));
+    console.log("usersWithDeviceNames", usersWithDeviceNames);
+    return usersWithDeviceNames;
 }
+
 async function deleteUserById(userId) {
     const db = await connectToMongoDB();
     const collection = db.collection('User_details');
